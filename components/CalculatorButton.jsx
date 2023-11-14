@@ -8,25 +8,48 @@ class CalculatorButton extends React.Component{
     }
 
     handleClick() {
-
+        let operands = {
+            "+": true, "-": true, "/": true, "*": true
+        }
         let currentState = this.props.currentDisplay;
         let lastChar = currentState[currentState.length - 1];
         let val = this.props.buttonValue;
 
-        
+        let currentNumberIsDecimal = false;
+
+        for (let i = 0; i < currentState.length; i++) {
+            if (currentState[i] === ".") {
+                currentNumberIsDecimal = true;
+            } else if (operands[currentState[i]] !== undefined) {
+                currentNumberIsDecimal = false;
+            }
+        }
+
         let numbers = {
             "0": true, "1": true, "2": true, "3": true, "4": true, "5": true, "6": true, "7": true, "8": true, "9": true
         }
 
         console.log(currentState);
 
-        if (currentState.length === 1 && numbers[val] === true && currentState[0] == "0") {
-            this.props.setDisplay(this.props.buttonValue);
+        if (currentNumberIsDecimal && val === ".") {
+
+        } else if (currentState.length === 1 && numbers[val] === true && currentState[0] == "0") {
+            this.props.setDisplay(val);
         } else if (val === "=") {
-            calculateFromString(currentState)
+            this.props.setDisplay(calculateFromString(currentState));
             // this.props.setDisplay(calculateFromString(currentState));
+        } else if (operands[val] === true) {
+            if (operands[lastChar] === true) {
+                if (val === "-" && operands[currentState[currentState.length-2]] === undefined) {
+                    this.props.changeDisplay(val);
+                } else {
+
+                }
+            } else {
+                this.props.changeDisplay(val)
+            }
         } else {
-            this.props.changeDisplay(this.props.buttonValue);
+            this.props.changeDisplay(val);
         }
 
 
