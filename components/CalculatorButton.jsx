@@ -44,6 +44,13 @@ class CalculatorButton extends React.Component{
                     this.props.changeDisplay(val);
                 } else {
 
+                    //Everything in this else statement is specific to testcase 13 of FreeCodeCamp's test script
+                    //The only calculator that I could find that uses this logic is the samsung calculator
+                    let a = currentState.split("");
+                    while (operands[a[a.length - 1]] === true) {
+                        a.pop();
+                    }
+                    this.props.setDisplay(a.join("") + val);
                 }
             } else {
                 this.props.changeDisplay(val)
