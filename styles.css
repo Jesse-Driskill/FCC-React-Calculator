@@ -8,7 +8,7 @@
 #calculator-buttons-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2vw;
+    gap: 1vw;
     /* padding: 2vw; */
     padding-top: 2vw;
 }
@@ -47,6 +47,7 @@
 #display {
     width: 90%;
     min-height: 5vw;
+    font-size: 2vw;
 }
 
 #calculator-container {

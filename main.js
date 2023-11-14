@@ -5,7 +5,7 @@ import displayReducer from "./redux/reducers/displayReducer";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 
-const store = createStore(displayReducer);
+export const store = createStore(displayReducer);
 
 class App extends React.Component {
     constructor(props) {
